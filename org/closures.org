@@ -1,0 +1,78 @@
+#+TITLE: Closures
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+OPTIONS: date:nil timestamp:nil toc:nil ^:nil num:nil
+#+EMAIL: Code Sensei B.V.
+#+REVEAL_PLUGINS: (highlight)
+
+
+* Introduction
+
+Using functions to create other functions.
+
+** Example
+
+#+BEGIN_SRC python
+def add(x, y):
+    def do_add():
+        print('Adding', x, y)
+        return x + y
+    return do_add
+#+END_SRC
+
+#+BEGIN_SRC text
+>>> a = add(3,4)
+>>> a
+<function do_add at 0x6a670>
+>>> a()
+Adding 3 4
+7
+#+END_SRC
+
+** Local Variables
+The inner function refers to variables defined by the outer function.
+
+#+BEGIN_SRC python
+def add(x, y):
+    def do_add():
+        # `x` and `y` are defined above `add(x, y)`
+        print('Adding', x, y)
+        return x + y
+    return do_add
+#+END_SRC
+
+This still works after =add()= has finished
+
+#+BEGIN_SRC text
+>>> a = add(3,4)
+>>> a
+<function do_add at 0x6a670>
+>>> a()
+Adding 3 4      # Where are these values coming from?
+7
+#+END_SRC
+
+* Closures
+
+ A closure retains the values of all variables needed for the function
+ to run properly later on.
+
+** Example
+When an inner function is returned as a result, that inner function is
+known as a closure.
+
+#+BEGIN_SRC python
+def add(x, y):
+    # `do_add` is a closure
+    def do_add():
+        print('Adding', x, y)
+        return x + y
+    return do_add
+#+END_SRC
+
+#+ATTR_REVEAL: :frag (appear)
+- Think of a closure as a function plus an extra environment that
+  holds the values of variables that it depends on
+
+* Note
+
+This presentation was partly copied from David Beazleys excellent course [[https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html][Practical Python]].

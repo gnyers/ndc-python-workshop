@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Closures</title>
+<meta name="author" content="(Reindert-Jan)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/css/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1>Closures</h1><h2>Reindert-Jan</h2><p><a href="mailto:Code Sensei B.V.">Code Sensei B.V.</a></p>
+</section>
+
+
+<section>
+<section id="slide-org3edbdff">
+<h2 id="org3edbdff">Introduction</h2>
+<p>
+Using functions to create other functions.
+</p>
+
+</section>
+<section id="slide-org60dd1e0">
+<h3 id="org60dd1e0">Example</h3>
+<div class="org-src-container">
+
+<pre><code class="python" >def add(x, y):
+    def do_add():
+        print('Adding', x, y)
+        return x + y
+    return do_add
+</code></pre>
+</div>
+
+<div class="org-src-container">
+
+<pre><code class="text" >&gt;&gt;&gt; a = add(3,4)
+&gt;&gt;&gt; a
+&lt;function do_add at 0x6a670&gt;
+&gt;&gt;&gt; a()
+Adding 3 4
+7
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org9ef09a0">
+<h3 id="org9ef09a0">Local Variables</h3>
+<p>
+The inner function refers to variables defined by the outer function.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="python" >def add(x, y):
+    def do_add():
+        # `x` and `y` are defined above `add(x, y)`
+        print('Adding', x, y)
+        return x + y
+    return do_add
+</code></pre>
+</div>
+
+<p>
+This still works after <code>add()</code> has finishec
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="text" >&gt;&gt;&gt; a = add(3,4)
+&gt;&gt;&gt; a
+&lt;function do_add at 0x6a670&gt;
+&gt;&gt;&gt; a()
+Adding 3 4      # Where are these values coming from?
+7
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2a0f195">
+<h2 id="org2a0f195">Closures</h2>
+<p>
+A closure retains the values of all variables needed for the function
+to run properly later on.
+</p>
+
+</section>
+<section id="slide-org2166d6a">
+<h3 id="org2166d6a">Example</h3>
+<p>
+When an inner function is returned as a result, that inner function is
+known as a closure.
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="python" >def add(x, y):
+    # `do_add` is a closure
+    def do_add():
+        print('Adding', x, y)
+        return x + y
+    return do_add
+</code></pre>
+</div>
+
+<ul>
+<li class="fragment appear">Think of a closure as a function plus an extra environment that
+holds the values of variables that it depends on</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orga2d8020">
+<h2 id="orga2d8020">Note</h2>
+<p>
+This presentation was partly copied from David Beazleys excellent course <a href="https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html">Practical Python</a>.
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>
