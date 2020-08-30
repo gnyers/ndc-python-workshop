@@ -36,7 +36,7 @@ Monday
 Tuesday
 -------
 
-   5. Functional Programming
+   5. Functional Programming       (Reindert)
    6. Magic Methods - Introduction (Reindert)
 
    Lunch
