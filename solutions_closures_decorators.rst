@@ -29,9 +29,9 @@ Please complete the following program:
 
    def never_negative(func):
        """Make sure `func` never returns a negative number"""
-       def call_with_modulo(*args, **kwargs):
+       def wrapper(*args, **kwargs):
            return abs(func(*args, **kwargs))
-       return  call_with_modulo
+       return wrapper
 
    import math
    pow = never_negative(math.pow)
