@@ -165,8 +165,6 @@ Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topic
 Decorators
 ==========
 
-    :Author: Reindert-Jan
-
 Presentation: `Decorators <https://codesensei.nl/presentations/ndc-decorators.html>`_
 
 
