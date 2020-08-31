@@ -205,7 +205,7 @@ arguments.
 Exercise 3: Caching
 ~~~~~~~~~~~~~~~~~~~
 
-Write a decorator `cached` that remembers the results of function
+Write a function `cached` that remembers the results of function
 calls. It only supports functions of one argument.
 
 
@@ -323,3 +323,51 @@ course
 `Practical
 Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html>`_.
 -
+
+
+Exercises: Decorators
+---------------------
+
+Exercise 1: HTML
+~~~~~~~~~~~~~~~~
+
+Write two decorators `bold` and `italic` that take a string-generating
+function and add html tags. You should be able to use them like this:
+
+.. code::python
+
+   @italic
+   def say_in_bold_and_italic(text):
+       return text
+
+
+   @bold
+   def say_in_bold(text):
+       return text
+
+
+   print(say_in_bold("hi"))
+   print(say_in_bold_and_italic("bye"))
+
+
+Exercise 2: Authorization
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Write a decorator `auth` that makes a function require authorization.
+Any function decorated in this way, will ask for a password. If the
+password is not entered correctly, you refuse to execute the code.
+
+.. code::python
+
+   @auth
+   def get_private_data():
+       return something_very_secret
+
+
+
+
+
+- functools.wrap
+-
+
+.. code:: python
