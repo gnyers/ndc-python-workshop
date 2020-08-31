@@ -199,6 +199,7 @@ rectangle by an integer `n`. The result should be a rectangle that has
 `n` times the height and width:
 
 .. code:: python
+
    r = Rectangle(2,3)
    x = r*3
 
