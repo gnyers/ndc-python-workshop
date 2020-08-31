@@ -29,6 +29,8 @@ Agenda
 Monday
 ------
 
+   Introduction Speakers
+   Introduction Participants
    1. Functions - Recap     (Gábor)
    2. Iterator Protocol     (Gábor)
 

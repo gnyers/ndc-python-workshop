@@ -34,7 +34,7 @@ Declaring functions
 ================================================================================
 
 Using the ``def`` keyword
--------------------------
+--------------------------------------------------------------------------------
 
 The primary syntax to define functions.
 
@@ -64,7 +64,7 @@ Example
   than the ``None`` object.
 
 Single-expression functions
----------------------------
+--------------------------------------------------------------------------------
 
 The purpose of the ``lambda`` keyword is to define simple functions, which
 often are used only once.
@@ -95,7 +95,7 @@ Fuction Arguments
 ================================================================================
 
 Argument passing
-----------------
+--------------------------------------------------------------------------------
 
 Argument passing to functions in Python is a bit unusual compared to other
 programming languages. In this context, the usual terms ``by-reference`` and
@@ -146,7 +146,7 @@ Example
 
 
 Mandatory arguments
--------------------
+--------------------------------------------------------------------------------
 
 Our earlier example requires exactly two arguments ``a`` and ``b``, no more
 and no less.
@@ -194,7 +194,7 @@ and no less.
 
 
 Optional arguments
-------------------
+--------------------------------------------------------------------------------
 
 By assigning a default value to an argument, it is no longer required.
 
@@ -287,7 +287,7 @@ When creating a function, we often wish to be able to consume a variable
 number of arguments.
 
 Variable number of postional arguments
---------------------------------------
+--------------------------------------------------------------------------------
 
 **Example**:
 
@@ -321,8 +321,8 @@ arguments into a ``tuple`` and assign it to the variable ``people``.
    TypeError: greet() got an unexpected keyword argument 'p3'
 
 
-Variable number of postional arguments
---------------------------------------
+Variable number of keyword arguments
+--------------------------------------------------------------------------------
 
 **Example**:
 
@@ -340,14 +340,14 @@ arguments into a ``tuple`` and assign it to the variable ``people``.
 TODO!!!
 
 Variable number of postional and keyword arguments
---------------------------------------------------
+--------------------------------------------------------------------------------
 
 Combining the two previous examples will provide for a function that is able
 to 
 
 
 Keyword-only arguments
-----------------------
+--------------------------------------------------------------------------------
 
 - Available since: Python v3.0
 - PEP-3102: `Keyword-Only Arguments
@@ -516,39 +516,131 @@ Exercises
 ================================================================================
 
 
-#. Find the problems in this function definition:
+.. _ex1:
 
-   .. code:: python
-      :class: pycon
+Exercise 1: Find the problems in this function definition
+---------------------------------------------------------
 
-      r = 3
-      pi = 3.14
+.. code:: python
+   :class: pycon
 
-      def circlearea(r=1):
-          circlearea = nr ** 2 * pi
+   r = 3
+   pi = 3.14
 
-      print("The new circle's area is:", circlearea(4))
+   def circlearea(r=1):
+       circlearea = nr ** 2 * pi
+
+   print("The new circle's area is:", circlearea(4))
+
+(See `solution 1 <#sol1>`_)
 
 
-#. (*) Define the function ``factorial`` with the following specifications:
+.. _ex2:
 
-   - it takes a single argument ``n``, which is a positive integer number
-   - returns the factorial value of ``n``, i.e.: the formula: n * n-1 * ... * 2 * 1
-   - (bonus) make sure that the function only accepts positive integer values
-     as the value of ``n``
-   - (bonus) for invalid input have the function raise a ``TypeError``
-     exception
+Exercise 2: Define the function ``factorial()``
+-----------------------------------------------
 
-#. (**) Define a function which is able to sort a ``list`` of ``str``, where:
+(*) Define the function ``factorial()`` with the following specifications:
 
-   - the ``str`` elements are assumed to be the days of the week, e.g.::
+- it takes a single argument ``n``, which is a positive integer number
+- returns the factorial value of ``n``, i.e.: the formula: ``n * n-1 * ...
+  * 2 * 1``
+- (bonus) make sure that the function only accepts positive integer values
+  as the value of ``n``
+- (bonus) for invalid input have the function raise a ``TypeError``
+  exception
 
-      l = ['Sun', 'mon', 'TUE', 'sAT', 'Mon', 'Fri', 'wed', 'thU', 
-           'WED', 'SUN', 'tue']
+(See `solution 2 <#sol2>`_)
 
-   Hints:
-   - the ``sorted()`` function will accept a custom sorting function using the
-     ``key=`` argument.
+
+
+.. _ex3:
+
+Exercise 3(**): Define the function ``daysorter()``
+---------------------------------------------------
+
+The function should be able to sort a ``list`` of ``str``'s, where:
+
+- the ``str`` elements are assumed to be the days of the week, e.g.: ::
+
+   l = ['Sun', 'mon', 'TUE', 'sAT', 'Mon', 'Fri', 'wed', 'thU', 
+        'WED', 'SUN', 'tue']
+
+- the function will return a new(!) list of the sorted days
+- (bonus) make sure that the sorted list will only contain lower-case
+  ``str``'s.
+
+Hints:
+
+- the ``sorted()`` function will accept a custom sorting function using the
+  ``key=`` argument.
+
+(See `solution03 <#sol3>`_)
+
+
+.. _ex4:
+
+Exercise 4: Explain!
+--------------------------------------------------------------------------------
+
+The following two examples implement the same functionality in two different
+ways. Please explain:
+
+- which of these approaches would be preferable and 
+- why
+
+
+.. code:: python
+   :number-lines: 1
+   :class: python-code
+
+   names = [ 'adele', 'bob', 'cindy', 'doug' ]
+
+   def append(somelist, newelem):
+       somelist.append(newelem)
+       return somelist
+
+   group = append(names, 'edith')
+
+Solutions
+================================================================================
+
+
+.. _sol1:
+
+Solution 1: Find the problems in this function definition
+--------------------------------------------------------------------------------
+
+
+
+
+
+(go back to `exercise 1 <#ex1>`_)
+
+
+
+.. _sol2:
+
+Solution 2: Create the function ``factorial()``
+--------------------------------------------------------------------------------
+
+
+
+
+(go back to `exercise 2 <#ex2>`_)
+
+
+
+.. _sol3:
+
+Solution 3: (**): Define the function ``daysorter()``
+--------------------------------------------------------------------------------
+
+
+
+(go back to `exercise 3 <#ex3>`_)
+
+
 
 
 
