@@ -163,8 +163,6 @@ Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topic
 Exercises: Closures
 ===================
 
-.. _ex1:
-
 Exercise 1: Warming up
 ----------------------
 
