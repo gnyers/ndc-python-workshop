@@ -18,9 +18,9 @@ Introduction
 Speakers
 ================================================================================
 
-Reindert
+Reindert-Jan Ekker -- https://www.linkedin.com/in/rjekker/
 
-Gábor
+Gábor Nyers -- https://www.linkedin.com/in/gnyers
 
 
 Agenda
