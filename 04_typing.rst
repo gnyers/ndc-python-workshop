@@ -13,7 +13,7 @@ Type Checking
    :local:
 
 
-Closures
+Type Checking
 ================================================================================
 
 Presentation: `Type Checking <https://codesensei.nl/presentations/type-checking-in-python.html>`_
