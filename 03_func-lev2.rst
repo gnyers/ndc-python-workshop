@@ -161,25 +161,25 @@ course
 Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html>`_.
 
 Exercises: Closures
-===================
+---------------------
 
 Exercise 1: Warming up
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Please complete the following program:
 
 .. code:: python
-   def never_negative(func):
-       """Make sure `func` never returns a negative number"""
-       def call_with_modulo(*args, **kwargs):
-           return abs(func(*args, **kwargs))
-       return  call_with_modulo
 
-   import math
-   pow = never_negative(math.pow)
+    def never_negative(func):
+        """Make sure `func` never returns a negative number"""
+        def call_with_modulo(*args, **kwargs):
+            return abs(func(*args, **kwargs))
+        return  call_with_modulo
 
-   print(pow(-12,2))
+    import math
+    pow = never_negative(math.pow)
 
+    print(pow(-12,2))
 
 
 
