@@ -4,7 +4,6 @@ Closures and Decorators
 
 .. sectnum::
    :start: 1
-   :prefix: Section 
    :suffix: .
    :depth: 2
 
@@ -12,17 +11,6 @@ Closures and Decorators
    :depth: 2
    :backlinks: entry
    :local:
-
-
-
-
-HET PLAN
-* Plan
-- mostly the text from beazly als presentatie
-- extra tekst van jeroen in pres?
-- maar ook naar rst -> op github
-- voorbeelden van gabor en jeroen als exercises
-- typing...?
 
 
 Closures
