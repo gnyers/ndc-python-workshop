@@ -1,5 +1,5 @@
 ===============
-Classes
+Classes, continued
 ===============
 
 ================================================================================
@@ -17,10 +17,10 @@ Type Checking
    :local:
 
 
-Classes: Recap
+Classes, continued
 ================================================================================
 
-Presentation: `Type Checking <https://codesensei.nl/presentations/classes-2.html>`_
+Presentation: `Classes, continued <https://codesensei.nl/presentations/classes-2.html>`_
 
 
 Magic methods
