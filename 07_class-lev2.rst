@@ -225,7 +225,7 @@ Exercises: Properties
 =====================
 
 Exercise 1: fullname
----
+---------------------
 
 Consider the following:
 
@@ -239,7 +239,7 @@ Consider the following:
 Add a property `fullname` that consists of the first and the last name.
 
 Exercise 2: square
----
+---------------------
 
 On your rectangle class, add a boolean property `is_square` that is
 true when width and height are the same.
@@ -251,8 +251,8 @@ Usage:
    r = Rectangle(10,5)
    print(r.is_square) # False
 
-Exercise 2: password
-----
+Exercise 3: password
+---
 
 On the BankAccount class, add a private field `__password`. Create a
 getter and a setter such that:
