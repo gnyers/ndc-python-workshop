@@ -44,10 +44,12 @@ Tuesday
    7. Collection protocols and implementing collections (Gábor)
    8. Properties, class methods, and static methods     (Gábor)
 
+Conferencing facility
+================================================================================
 
+* link: https://meet.trebut.nl/b/gab-bro-fw5
 
-
-
+* `How to connect <bbb-connect>`_
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
 .. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3
