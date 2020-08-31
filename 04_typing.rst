@@ -500,24 +500,24 @@ Add type hints to each function and use mypy to find and fix the errors:
 Exercise 2: Students
 ~~~~~~~~~~~~~~~~~
 
-1. 1. Given the following dictionary with students and grades:
+Given the following dictionary with students and grades:
 
-2. 2. .. code:: python
-         {'John': [8, 2, 3, 6, 8],
-          'Annie': [5, 8, 7, 8, 5],
-          'Pete': [8, 8, 6, 7, 9],
-          'Lucy': [2, 4, 5, 6, 7],
-          'Bob': [6, 7, 5, 6, 7]}
+.. code:: python
+   {'John': [8, 2, 3, 6, 8],
+    'Annie': [5, 8, 7, 8, 5],
+    'Pete': [8, 8, 6, 7, 9],
+    'Lucy': [2, 4, 5, 6, 7],
+    'Bob': [6, 7, 5, 6, 7]}
 
-3. 3. Write a function `get_average(name)` that takes the name of a student
-      and returns their average. Add type checking to this function (and
-      check that it is correct).
+Write a function `get_average(name)` that takes the name of a student
+and returns their average. Add type checking to this function (and
+check that it is correct).
 
-4. 4. Write a function `best_student()` that returns the name of the student
-      with the highest average AND their highest grade. Add type checking to
-      this function as well.
+Write a function `best_student()` that returns the name of the student
+with the highest average AND their highest grade. Add type checking to
+this function as well.
 
-5. 5. Exercise 3: Shop
+Exercise 3: Shop
 ~~~~~~~~~~~~~~~~~~~
 
 Consider the following little program that allows managing the stock
