@@ -171,7 +171,57 @@ We can add a setter method as well:
     c.diameter = 20
     print(c.r) # Prints 10
 
+Exercises: Magic Methods
+=======================
 
+For a list of magic methods, see: `this tutorial <https://www.python-course.eu/python3_magic_methods.php>`_
 
-.. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
-.. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3
+Exercise 1: Rectangles
+-----
+
+Create a class ``Rectangle``. This has two properties: a height and a
+ width. Both are arguments of ``__init()__``.
+
+Add a method ``area()`` that returns the area of the rectangle, and a
+``__str__`` method that makes it possible to print a rectangle object.
+This should also print the area.
+
+Exercise 2: Sorting rectangles
+-----
+
+We can make objects sortable by implementing the `<` operator. To do
+this, implement the `__lt__(self,other)` method. Make rectangles
+sorteable by their area.
+
+Test this by creating a list of rectangle objects and sorting it.
+
+Exercise 3: multiplying rectangles
+------
+
+Implement the correct magic methods to make it possible to multiply a
+rectangle by an integer `n`. The result should be a rectangle that has
+`n` times the height and width:
+
+.. code:: python
+   r = Rectangle(2,3)
+   x = r*3
+
+`x` should now be a 6x9 rectangle.
+
+Exercise 4:
+------
+
+Consider the BankAccount class from before. Add magic methods so that:
+
+- we can compare two bankaccounts using `<`, `>`, and `==`. For these
+  operations you only compare balances.
+
+- we can deposit and withdraw money using the `+` and `-` operators
+  for a bankaccount and an integer.
+
+The `+` operator should be special: if you add an int to a
+bankaccount, you add that amount to the balance.
+
+But if you add two BankAccount objects, you return a new BankAccount
+object with the names of the owners added together and the balances
+summed as well. The original accounts should be emptied.
