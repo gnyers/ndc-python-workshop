@@ -325,6 +325,10 @@ course
 Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html>`_.
 -
 
+Links
+-----
+
+For extra reading I recommend `this blog by Miguel Grinberg <https://blog.miguelgrinberg.com/post/the-ultimate-guide-to-python-decorators-part-i-function-registration>`_.
 
 Exercises: Decorators
 ---------------------
@@ -349,7 +353,6 @@ function and add html tags. You should be able to use them like this:
 
    print(say_in_bold("hi"))
    print(say_in_bold_and_italic("bye"))
-
 
 
 Exercise 2: Authorization
@@ -403,5 +406,39 @@ Example: given the following file `legs.json`:
 
 This should print "2" :)
 
-Exercise 4: Wrapper
+As a bonus exercise: try to add the filename of the json file as an
+argument to the decorator. This works slightly different; see `this
+article
+<https://blog.miguelgrinberg.com/post/the-ultimate-guide-to-python-decorators-part-iii-decorators-with-arguments>`_
+
+
+Exercise 4: Wrapper (Bonus)
 ~~~~~~~~~~~~~~~~~~~
+
+Consider the following:
+
+.. code:: python
+
+   def wrap_func(func):
+       '''Fill the first argument of func from data_file'''
+       def my_wrapper(*args, **kwargs):
+           """This is the function wrapper"""
+           return func(json.load(open(data_file)), *args, **kwargs)
+       return my_wrapper
+
+
+   @wrap_func
+   def my_func():
+       """This is my function"""
+       print("hi!")
+
+   print(my_func)
+   print(help(my_func))
+
+Run the program and carefully examine the output. We are printing
+information about `my_func` but that is not what we get to see.
+
+This can be confusing, especially when debugging your code. The
+solution is something called `functools.wraps`, which is explained
+`here
+<https://lerner.co.il/2019/05/05/making-your-python-decorators-even-better-with-functool-wraps/>`_.
