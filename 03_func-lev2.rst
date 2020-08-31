@@ -173,8 +173,9 @@ Please complete the following program:
     def never_negative(func):
         """Make sure `func` never returns a negative number"""
         def call_with_modulo(*args, **kwargs):
-            return abs(func(*args, **kwargs))
-        return  call_with_modulo
+            # ... insert your code here ...
+
+    return  call_with_modulo
 
     import math
     pow = never_negative(math.pow)
@@ -182,6 +183,39 @@ Please complete the following program:
     print(pow(-12,2))
 
 
+Exercise 2: Swapping arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Write a function `swap_args` that takes another function as its
+arguments but swaps the arguments. You only have to support 2
+arguments.
+
+.. code:: python
+
+   def swap_args(func):
+       # ... your code here ...
+
+   tnirp = swap_args(print)
+   tnirp("Good", "morning")  # output: "morning Good"
+
+   from math import pow
+   wop = swap_args(pow)
+   print(wop(2,5))  # print 25 (5^2) instead of 32 (2^5)
+
+Exercise 3: Caching
+~~~~~~~~~~~~~~~~~~~
+
+Write a decorator `cached` that remembers the results of function
+calls. It only supports functions of one argument.
+
+
+.. code:: python
+   def some_expensive_calculation(x):
+       return x**208 %316 -867
+
+   faster_calc = cached(some_expensive_calculation)
+   print(faster_calc(283))  # First time, do the calculation
+   print(faster_calc(283))  # Second time: get it from the cache
 
 
 Decorators
