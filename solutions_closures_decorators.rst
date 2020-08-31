@@ -110,6 +110,7 @@ function and add html tags. You should be able to use them like this:
            return '<i>{}</i>'.format( origfunc(*args, **kwargs) )
        return italic_wrapper
 
+   @bold
    @italic
    def say_in_bold_and_italic(text):
        return text
