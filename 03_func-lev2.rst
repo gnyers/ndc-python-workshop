@@ -171,17 +171,16 @@ Exercise 1: Warming up
 Please complete the following program:
 
 .. code:: python
-          def never_negative(func):
-          """Make sure `func` never returns a negative number"""
-          def call_with_modulo(*args, **kwargs):
-          return abs(func(*args, **kwargs))
-          return  call_with_modulo
+   def never_negative(func):
+       """Make sure `func` never returns a negative number"""
+       def call_with_modulo(*args, **kwargs):
+           return abs(func(*args, **kwargs))
+       return  call_with_modulo
 
+   import math
+   pow = never_negative(math.pow)
 
-          import math
-          pow = never_negative(math.pow)
-
-          print(pow(-12,2))
+   print(pow(-12,2))
 
 
 
