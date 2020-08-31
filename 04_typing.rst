@@ -463,7 +463,98 @@ Preferable?
     def foo(x):
         # type: int -> str
 
-That's it
+Exercises
+=========
+
+Make sure to install `mypy` before doing these exercises, by running
+`pip install mypy`.
+
+A very helpful resource when writing type hints is `the mypy type
+hints cheat sheet
+<https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html>`_.
+
+Exercise 1: Taxes
+~~~~~~~~~~~~~~~~~
+
+Below is a program that calculates income taxes for a fictional
+country. There are some problems with this code.
+
+Add type hints to each function and use mypy to find and fix the errors:
+
+.. code:: python
+
+   def get_tax_percentage(income):
+       if income < 20000:
+           return 0
+       elif income <= 50000:
+           return "30"
+       else:
+           return 60
+
+   def print_tax_percentage(income):
+       print(get_tax_percentage(income) + get_tax_percentage(income))
+
+   income = input("How much do you earn? ")
+   print_tax_percentage(income)
+
+Exercise 2: Students
+~~~~~~~~~~~~~~~~~
+
+1. 1. Given the following dictionary with students and grades:
+
+2. 2. .. code:: python
+         {'John': [8, 2, 3, 6, 8],
+          'Annie': [5, 8, 7, 8, 5],
+          'Pete': [8, 8, 6, 7, 9],
+          'Lucy': [2, 4, 5, 6, 7],
+          'Bob': [6, 7, 5, 6, 7]}
+
+3. 3. Write a function `get_average(name)` that takes the name of a student
+      and returns their average. Add type checking to this function (and
+      check that it is correct).
+
+4. 4. Write a function `best_student()` that returns the name of the student
+      with the highest average AND their highest grade. Add type checking to
+      this function as well.
+
+5. 5. Exercise 3: Shop
+~~~~~~~~~~~~~~~~~~~
+
+Consider the following little program that allows managing the stock
+for a grocery store.
+
+Add type annotations to the functions `print_table` and
+`find_prod_by_name` so that you receive no errors from `mypy`.
+
+.. code:: python
+   inventory = [ { 'name': 'bread', 'price': 2, 'stock': 100 },
+    { 'name': 'coffee', 'price': 3, 'stock': 40 },
+    { 'name': 'cheese', 'price': 3, 'stock': 30 },
+    { 'name': 'milk', 'price': 1, 'stock': 80 } ]
+
+   def print_table(table):
+       print("Name     Price    Stock")
+       print("--------------------------")
+       for prod in inventory:
+           print(prod['name'], "\t", prod['price'], '\t', prod['stock'])
+
+   def find_prod_by_name(name):
+       for prod in inventory:
+           if prod['name'] == name.lower():
+               return prod
+       return None
+
+   print_table(inventory)
+   choice = input("Select a product? ")
+   product = find_prod_by_name(choice)
+   if product:
+       amount = int(input("Amount in stock? "))
+       product['stock'] = amount
+       print_table(inventory)
+   else:
+       print("Unknown product")
+
+
 ---------
 
 Now go and add type annotations to your code!
