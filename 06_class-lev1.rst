@@ -24,7 +24,7 @@ Presentation: `Type Checking <https://codesensei.nl/presentations/classes.html>`
 
 
 Classes
-~~~~~~~
+-------
 
 Give structure to your code by grouping
 
@@ -220,3 +220,108 @@ other programs).
 
 Theoretically, the output of ``__repr__`` should be useable with
 ``eval()`` to re-create the object
+
+Some Extra Examples
+===================
+
+.. code:: python
+
+   class Pet:
+    "A class representing pet animals"
+    def __init__(self, name, species):
+        self.name = name       # store the value for name on the name attribute
+        self.species = species
+
+   # Creating objects (this calls __init__)
+   c = Pet("Tom", "Cat")
+   d = Pet("Lassie", "Dog")
+
+   # accessing attributes
+   print(c.species)
+   print(d.name)
+
+
+.. code:: python
+
+   class Car:
+    def __init__(self, model, brand):
+        self.model = model
+        self.brand = brand
+        self.km = 0
+
+    def drive(self, distance):
+        self.km += distance
+
+    def __str__(self):
+        return self.model + " " + self.brand + ", kms: " + str(self.km)
+
+.. code:: python
+
+   class BankAccount:
+    def __init__(self, name, initial_balance):
+        self.name = name
+        self.balance = initial_balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            return self.balance
+        else:
+            print("Can't deposit a negative amount!")
+
+
+    account = BankAccount("RJ", 1000)
+
+
+Exercises: Warming up
+=====================
+
+Exercise 1: BankAccount
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Consider the BankAccount example above:
+
+- add a :func:`__str__()` method to make it possible to print BankAccount objects.
+- add a :func:`withdraw()` method to withdraw money from the
+  BankAccount. Make sure we cannot withdraw more money than is
+  actually in the account. Of course you can also not withdraw a
+  negative amount of money.
+
+
+Exercise 2: Cars
+~~~~~~~~~~~~~~~~
+
+See the Car example above. Create a list of Car instances. Print this list. What goes wrong?
+
+Add a :func:`repr()` method to fix this.
+
+
+Exercise 3: Pizza
+~~~~~~~~~~~~~~~~~
+
+Consider the following code:
+
+.. code:: python
+
+
+   class Topping:
+       def __init__(self, name, price):
+           self.name = name
+           self.price = price
+
+       def __str__(self):
+           return self.name
+
+Start by creating a number of Topping objects, let's say Mozzarella
+for $0.20, Tomato Sauce for $0.10, Prosciutto for $0.50.
+
+Then, create a Pizza class. Here are the requirements:
+
+- A pizza is created with a name and a list of toppings (Margherita
+  has Mozzarella and Tomato Sauce)
+- There should be a method :func:`Pizza.price()` that returns the price for
+  a pizza. The calculation for this is $2 + the sum of all topping
+  prices.
+- Make it possible to call :func:`print()` on a Pizza object.
+
+Create several Pizza objects to test your code.
