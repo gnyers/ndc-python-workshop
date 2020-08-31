@@ -375,7 +375,7 @@ Hint: use the `json.load()` function.
 
 Example: given the following file `legs.json`:
 
-.. code:json
+.. code:: json
 
    {
      "Dog": 4,
@@ -385,7 +385,7 @@ Example: given the following file `legs.json`:
    }
 
 
-.. code:python
+.. code:: python
 
    import json
 
@@ -405,8 +405,3 @@ This should print "2" :)
 
 Exercise 4: Wrapper
 ~~~~~~~~~~~~~~~~~~~
-
-
-
-
-.. code:: python
