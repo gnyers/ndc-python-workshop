@@ -206,7 +206,8 @@ Exercise 3: Caching
 ~~~~~~~~~~~~~~~~~~~
 
 Write a function `cached` that remembers the results of function
-calls. It only supports functions of one argument.
+calls. It only supports functions of one argument. Hint: use a dict to
+store the results of previous function calls.
 
 
 .. code:: python
@@ -350,6 +351,7 @@ function and add html tags. You should be able to use them like this:
    print(say_in_bold_and_italic("bye"))
 
 
+
 Exercise 2: Authorization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -363,11 +365,48 @@ password is not entered correctly, you refuse to execute the code.
    def get_private_data():
        return something_very_secret
 
+Exercise 3: JSON
+~~~~~~~~~~~~~~~~
+
+Write a decorator from_json that will fill the first argument of the
+function it decorates with data read from a json file.
+
+Hint: use the `json.load()` function.
+
+Example: given the following file `legs.json`:
+
+.. code:json
+
+   {
+     "Dog": 4,
+     "Cat": 3,
+     "Bird": 2,
+     "Whale": 0
+   }
+
+
+.. code:python
+
+   import json
+
+   data_file = "legs.json"
+
+   def from_json(func):
+       '''Fill the first argument of func from data_file'''
+       # ... your code here ...
+
+   @from_json
+   def get_number_of_legs(legs_data, animal):
+       return legs_data[animal]
+
+   print(get_number_of_legs("Bird"))
+
+This should print "2" :)
+
+Exercise 4: Wrapper
+~~~~~~~~~~~~~~~~~~~
 
 
 
-
-- functools.wrap
--
 
 .. code:: python
