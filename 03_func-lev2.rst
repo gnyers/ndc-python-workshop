@@ -210,6 +210,7 @@ calls. It only supports functions of one argument.
 
 
 .. code:: python
+
    def some_expensive_calculation(x):
        return x**208 %316 -867
 
