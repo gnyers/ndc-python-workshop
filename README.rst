@@ -49,7 +49,7 @@ Conferencing facility
 
 * link: https://meet.trebut.nl/b/gab-bro-fw5
 
-* `How to connect <bbb-connect>`_
+* `How to connect <bbb-connect.rst>`_
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
 .. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3
