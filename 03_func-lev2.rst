@@ -341,6 +341,7 @@ function and add html tags. You should be able to use them like this:
 
 .. code:: python
 
+   @bold
    @italic
    def say_in_bold_and_italic(text):
        return text
