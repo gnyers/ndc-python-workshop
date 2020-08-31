@@ -423,7 +423,7 @@ Consider the following:
        '''Fill the first argument of func from data_file'''
        def my_wrapper(*args, **kwargs):
            """This is the function wrapper"""
-           return func(json.load(open(data_file)), *args, **kwargs)
+           return func(*args, **kwargs)
        return my_wrapper
 
 
