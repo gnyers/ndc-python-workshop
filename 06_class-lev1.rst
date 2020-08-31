@@ -313,7 +313,7 @@ Consider the following code:
            return self.name
 
 Start by creating a number of Topping objects, let's say Mozzarella
-for $0.20, Tomato Sauce for $0.10, Prosciutto for $0.50.
+for `$0.20`, Tomato Sauce for `$0.10`, Prosciutto for `$0.50`.
 
 Then, create a Pizza class. Here are the requirements:
 
