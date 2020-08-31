@@ -155,10 +155,35 @@ Two closures
 Note
 ----
 
-This presentation was partly copied from David Beazleys excellent
+This text was based on from David Beazleys excellent
 course
 `Practical
 Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html>`_.
+
+Exercises: Closures
+===================
+
+.. _ex1:
+
+Exercise 1: Warming up
+----------------------
+
+Please complete the following program:
+
+.. code:: python
+          def never_negative(func):
+          """Make sure `func` never returns a negative number"""
+          def call_with_modulo(*args, **kwargs):
+          return abs(func(*args, **kwargs))
+          return  call_with_modulo
+
+
+          import math
+          pow = never_negative(math.pow)
+
+          print(pow(-12,2))
+
+
 
 
 
@@ -261,7 +286,7 @@ These do exactly the same thing.
 Note
 ----
 
-This presentation was partly copied from David Beazleys excellent
+This text was based on David Beazleys excellent
 course
 `Practical
 Python <https://dabeaz-course.github.io/practical-python/Notes/07_Advanced_Topics/03_Returning_functions.html>`_.
