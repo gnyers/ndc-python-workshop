@@ -1,5 +1,5 @@
 ================================================================================
-Segment 1: Functions: a recap
+Segment 1: Functions: Introduction
 ================================================================================
 
 .. sectnum::
@@ -16,19 +16,20 @@ Segment 1: Functions: a recap
 Recap
 ================================================================================
 
+.. figure:: ./images/01_func_function_in_out.svg
+   :width: 80%
+   :alt: a function is a black box
+
+   A Python function takes arguments as input and returns a single object
+
 Functions:
 
 - are callable objects: they represent one or more statements
 - the purpose of functions is to be able to re-use these statements all over
   our program(s)
 - can take a fixed or variable number of arguments
-- return exactly one object, which may be a collection object. This is the way
-  to return multiple objects from the function.
-- the return object is by default the ``None`` object, unless *overwritten* by
-  the expression of the first ``return`` statement (e.g.: ``return a + b``)
 - can take a function as argument and return a function (also known as:
   "first-class" functions)
-
 
 Declaring functions
 ================================================================================
@@ -38,8 +39,7 @@ Using the ``def`` keyword
 
 The primary syntax to define functions.
 
-Example
-^^^^^^^
+**Example**:
 
 .. code:: python
    :class: python-code
@@ -69,29 +69,108 @@ Single-expression functions
 The purpose of the ``lambda`` keyword is to define simple functions, which
 often are used only once.
 
-Typical example of using lambda functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code:: python
-   :class: pycon
-
-   >>> team
-   ['evE', 'ALEX', 'joe', 'dAn', 'Oli']
-
-   >>> sorted(team)
-   ['ALEX', 'Oli', 'dAn', 'evE', 'joe']
-
-   >>> sorted(team, key=lambda n: n.lower())
-   ['ALEX', 'dAn', 'evE', 'joe', 'Oli']
+**Typical example of a lambda functions**:
 
 - The elements of list ``team`` are mixed-case strings
+
+   .. code:: python
+      :class: pycon
+
+      >>> team
+      ['evE', 'ALEX', 'joe', 'dAn', 'Oli']
+
 - Sorting such a list is not trivial, especially if we must preserve the case
+
+   .. code:: python
+      :class: pycon
+
+      >>> sorted(team)
+      ['ALEX', 'Oli', 'dAn', 'evE', 'joe']
+
 - The ``"sorted()"`` function's ``"key="`` argument is provided with
   a callable object defined as a lambda function: ``lambda n: n.lower()``.
-- The ``lambda`` function is usually no longer needed after this sorting.
 
 
-Fuction Arguments
+   .. code:: python
+      :class: pycon
+
+      >>> sorted(team, key=lambda n: n.lower())
+      ['ALEX', 'dAn', 'evE', 'joe', 'Oli']
+
+
+- The ``lambda`` function is usually no longer needed after such an operation
+
+
+Return value
+================================================================================
+
+- Python functions return exactly one object
+- By default all functions return the ``None`` object,
+
+  .. code:: python
+     :class: python-code
+
+     def f(a, b):
+         print(a, b)
+
+     return_value = f('age', 42)
+
+  the value of ``return_value`` is ``None``!
+
+- The default ``None`` return object can be *overridden* by a ``return``
+  statement:
+
+  .. code:: python
+     :class: python-code
+
+     def f(a, b):
+         print(a, b)
+         return 42
+
+     return_value = f('age', 42)
+
+  the value of ``return_value`` is now ``42``!
+
+- To return multiple values, put them all into some collection object, e.g. a
+  ``tuple``:
+
+  .. code:: python
+     :class: python-code
+
+     def f(a, b, c):
+         return c, b, a
+
+     return_value = f('Homer', 'Bart', 'Marge')
+
+  the value of ``return_value`` is ``('Marge', 'Bart', 'Homer')``!
+
+
+- The ``return`` statement will evaluate the result its expression:
+
+  .. code:: python
+     :class: python-code
+
+     def c2f(celsius, /):
+         return celsius * 9 / 5 + 32
+
+     temp_f = c2f(24)
+
+- If the function has more than one ``return`` statements, the return value
+  will be determined by whichever is evaluated first:
+
+  .. code:: python
+     :class: python-code
+
+     def agecategory(age):
+         if     0  <  age < 12 : return 'child'
+         elif   12 <= age < 18 : return 'teen'
+         elif   18 <= age < 67 : return 'adult'
+         elif   67 <= age < 120: return 'senior'
+         else                  : return 'No!'
+
+
+
+Fuction arguments
 ================================================================================
 
 Argument passing
@@ -105,7 +184,6 @@ Example
 ^^^^^^^
 
 .. code:: python
-   :number-lines: 1
    :class: python-code
 
    name = 'Sponge Bob'
@@ -119,7 +197,7 @@ Example
    print(f'Character name: {name}')
    print(f"Character's fiends: {pals}")
 
-- When executed, this above example will print: ::
+- When executed, the above example will print: ::
 
    Character name: Sponge Bob
    Character's firends: []
@@ -189,6 +267,12 @@ and no less.
 
    >>> add(3, 10)
    13
+
+Even if the arguments are collection objects:
+
+.. code:: python
+   :class: pycon
+
    >>> add((1,2,3), (4,))
    (1, 2, 3, 4)
 
@@ -196,7 +280,8 @@ and no less.
 Optional arguments
 --------------------------------------------------------------------------------
 
-By assigning a default value to an argument, it is no longer required.
+If an argument is assigned a default value, that argument may be omitted when
+calling the function.
 
 .. code:: python
    :class: python-code
@@ -226,21 +311,24 @@ By assigning a default value to an argument, it is no longer required.
    TypeError: mul() missing 1 required positional argument: 'a'
 
 
-Providing arguments to functions
+Providing arguments when calling functions
 ================================================================================
 
 There are two possible notations for an argument to be passed to a function:
+
+.. code:: python
+   :class: python-code
+
+   def add(a,b):
+       print(f'arg "a": {a}')
+       print(f'arg "b": {b}')
+       return a + b
 
 #. as a positional argument:
 
    .. code:: python
       :class: pycon
 
-      >>> def add(a,b):
-      ...     print(f'arg "a": {a}')
-      ...     print(f'arg "b": {b}')
-      ...     return a + b
-      ...
       >>> add(2, 3)
       arg "a": 2
       arg "b": 3
@@ -249,7 +337,7 @@ There are two possible notations for an argument to be passed to a function:
    In this example argument ``"a"`` has been assigned the object ``2``, and
    ``"b"`` got ``3``.
 
-   The reason for this is the positions of resp. ``"a"`` and ``"b"`` on the
+   The reason for this is the position of resp. ``"a"`` and ``"b"`` on the
    function's argument list, and the order in which ``2`` and ``3`` have been
    provided.
 
@@ -277,22 +365,23 @@ There are two possible notations for an argument to be passed to a function:
 
 
 **Best practice**: In general using keyword arguments is preferable, because
-"Explicit is better than implicite"
+"Explicit is better than implicit"
 
 
-Variable number of arguments
+Functions with variable number of arguments
 ================================================================================
 
-When creating a function, we often wish to be able to consume a variable
-number of arguments.
+It is sometimes useful when a function is able to consume a variable number of
+arguments.
 
-Variable number of postional arguments
+**Example**: the ``print()`` function!
+
+Variable number of positional arguments
 --------------------------------------------------------------------------------
 
 **Example**:
 
 .. code:: python
-   :number-lines: 1
    :class: python-code
 
    def greet(*people):
@@ -310,7 +399,8 @@ arguments into a ``tuple`` and assign it to the variable ``people``.
    Hello Joe
    Hello Adele
 
-**Note**: the function ``greet()`` can only process positional arguments:
+**Note the limitation**: the function ``greet()`` can only process positional
+arguments:
 
 .. code:: python
    :class: pycon
@@ -327,23 +417,79 @@ Variable number of keyword arguments
 **Example**:
 
 .. code:: python
-   :number-lines: 1
    :class: python-code
 
    def show(**attributes):
       for attr in attributes:
           print(f'{attr} = {attributes[attr]}')
 
-The notation ``*attributes`` will instruct Python to collect every positional
-arguments into a ``tuple`` and assign it to the variable ``people``.
+The notation ``**attributes`` will instruct Python to collect every positional
+arguments into a ``dict`` and assign it to the variable ``attributes``.
 
-TODO!!!
+
+**Note the limitation**: the function ``attributes()`` can only process
+keyword arguments!
+
 
 Variable number of postional and keyword arguments
 --------------------------------------------------------------------------------
 
-Combining the two previous examples will provide for a function that is able
-to 
+Combining the two previous examples will provide the possibility to create
+functions, which can consume a variable number of arguments, both as
+positional as well as keyword arguments:
+
+
+.. code:: python
+   :class: python-code
+
+   def generic(*args, **kwargs):
+       for nr, arg in enumerate(args):
+           print(f'Positional arg {nr}: {arg}')
+       for key, value in kwargs.items():
+           print(f'Keyword arg {key}: {value}')
+
+
+**Example usage 1**: just invoke ``generic()`` with a bunch of arguments
+
+   .. code:: python
+      :class: pycon
+
+      >>> generic('red', 'green', 'blue', name='Homer', age=42)
+      Positional arg 0: red
+      Positional arg 1: green
+      Positional arg 2: blue
+      Keyword arg name: Homer
+      Keyword arg age: 42
+
+**Example usage 2**: the order of argument types is important: **first** all positional arguments and **then**: all keyword arguments!
+
+   .. code:: python
+      :class: pycon
+
+      >>> generic('red', color='green', 'blue', name='Homer', age=42)
+        File "<stdin>", line 1
+      SyntaxError: positional argument follows keyword argument
+
+
+Enforcement of how users provide arguments (*)
+================================================================================
+
+It is sometimes useful for function authors to enforce a particular way to
+provide arguments when calling the function, e.g.:
+
+- users of a function must **always** use keyword arguments, to have the
+  freedom of changing the function's signature, if it is not yet finalized:
+
+  today: ``def bookroom(nr_persons, checkin, checkout):``
+
+  tomorrow: ``def bookroom(checkin, checkout, nr_persons, amenities):``
+
+- users should **always** use positional arguments, in order to be free (as
+  function authors) to change the argument names:
+
+  today: ``def c2f(temp):``
+
+  tomorrow: ``def c2f(celsius):``
 
 
 Keyword-only arguments
@@ -352,17 +498,11 @@ Keyword-only arguments
 - Available since: Python v3.0
 - PEP-3102: `Keyword-Only Arguments
   <https://www.python.org/dev/peps/pep-3102/>`_
-- Motivation: to allow for the declaration of arguments that will only be
-  accepted as keyword argument.
-
-  Keyword arguments are usually preferable, since they are explicit and leave
-  no room for ambiguity.
 
 Example 1: Function with no positional arguments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
-   :number-lines: 1
    :class: python-code
    :name: s1_ex01_keyword_only.py
 
@@ -421,7 +561,6 @@ The goal of this function argument list is to provide an API with:
 
 .. code:: python
    :name: s1_ex02_miscargs.py
-   :number-lines: 1
    :class: python-code
 
    def room_search2(checkin,
@@ -499,7 +638,7 @@ arguments
 
 
 Positional-only arguments
--------------------------
+--------------------------------------------------------------------------------
 
 - Requires: Python v3.8
 - PEP-0570: `Python Positional-Only Parameters
@@ -512,135 +651,82 @@ Positional-only arguments
   without affecting existing users.
 
 
-Exercises
-================================================================================
+Example 1: Function with only positional arguments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+   :name: filename.py
+   :class: python-code
+
+   def f2c(farenheid, /):
+       return 5 / 9 * (farenheid - 32)
+
+   def c2f(celsius, /):
+       return celsius * 9 / 5 + 32
 
 
-.. _ex1:
-
-Exercise 1: Find the problems in this function definition
----------------------------------------------------------
+**Usage example 1**: calling the functions with positional arguments will work
+correctly:
 
 .. code:: python
    :class: pycon
 
-   r = 3
-   pi = 3.14
-
-   def circlearea(r=1):
-       circlearea = nr ** 2 * pi
-
-   print("The new circle's area is:", circlearea(4))
-
-(See `solution 1 <#sol1>`_)
+   >>> c2f(20)
+   68.0
+   >>> f2c(68)
+   20.0
 
 
-.. _ex2:
-
-Exercise 2: Define the function ``factorial()``
------------------------------------------------
-
-(*) Define the function ``factorial()`` with the following specifications:
-
-- it takes a single argument ``n``, which is a positive integer number
-- returns the factorial value of ``n``, i.e.: the formula: ``n * n-1 * ...
-  * 2 * 1``
-- (bonus) make sure that the function only accepts positive integer values
-  as the value of ``n``
-- (bonus) for invalid input have the function raise a ``TypeError``
-  exception
-
-(See `solution 2 <#sol2>`_)
-
-
-
-.. _ex3:
-
-Exercise 3(**): Define the function ``daysorter()``
----------------------------------------------------
-
-The function should be able to sort a ``list`` of ``str``'s, where:
-
-- the ``str`` elements are assumed to be the days of the week, e.g.: ::
-
-   l = ['Sun', 'mon', 'TUE', 'sAT', 'Mon', 'Fri', 'wed', 'thU', 
-        'WED', 'SUN', 'tue']
-
-- the function will return a new(!) list of the sorted days
-- (bonus) make sure that the sorted list will only contain lower-case
-  ``str``'s.
-
-Hints:
-
-- the ``sorted()`` function will accept a custom sorting function using the
-  ``key=`` argument.
-
-(See `solution03 <#sol3>`_)
-
-
-.. _ex4:
-
-Exercise 4: Explain!
---------------------------------------------------------------------------------
-
-The following two examples implement the same functionality in two different
-ways. Please explain:
-
-- which of these approaches would be preferable and 
-- why
+**Usage example 2**: trying to invoke the functions with keyword arguments
+will fail:
 
 
 .. code:: python
-   :number-lines: 1
-   :class: python-code
+   :class: pycon
 
-   names = [ 'adele', 'bob', 'cindy', 'doug' ]
+   >>> c2f(celsius=20)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   TypeError: c2f() got some positional-only arguments passed as keyword arguments: 'celsius'
 
-   def append(somelist, newelem):
-       somelist.append(newelem)
-       return somelist
+   >>> f2c(farenheid=68)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   TypeError: f2c() got some positional-only arguments passed as keyword arguments: 'farenheid'
 
-   group = append(names, 'edith')
+- Note that Python recognizes the ``celsius`` and ``farenheid`` arguments, but
+  because they are positional-only arguments, it will throw an exception!
 
-Solutions
+
+
+
+
+Summary
 ================================================================================
 
+In this segment we've walked through the basics of defining and using
+functions in Python.
 
-.. _sol1:
+- Function can be defined using the ``def`` and ``lambda`` keywords.
+- Python has first-class functions, i.e.: functions may be called with
+  functions as arguments.
+- When calling functions, it is recommended to use the keyword-argument
+  notation, because it is explicit.
+- Python also provides a rich notation to define the way how arguments may be
+  provided when calling a function, i.e.:
 
-Solution 1: Find the problems in this function definition
---------------------------------------------------------------------------------
+  - ``def varargs(*args, **kwargs):`` : variable number of arguments, that may
+    be provided both as positional as well as keyword arguments
 
+  - ``def posargsonly(arg1, arg2, /):`` : only positional arguments
+  - ``def kwargsonly(*, kwarg1, kwarg2):`` : only keyword arguments allowed
 
+What we haven't talked about are:
 
-
-
-(go back to `exercise 1 <#ex1>`_)
-
-
-
-.. _sol2:
-
-Solution 2: Create the function ``factorial()``
---------------------------------------------------------------------------------
-
-
-
-
-(go back to `exercise 2 <#ex2>`_)
-
-
-
-.. _sol3:
-
-Solution 3: (**): Define the function ``daysorter()``
---------------------------------------------------------------------------------
-
-
-
-(go back to `exercise 3 <#ex3>`_)
-
-
+- namespaces (isolation of variable names)
+- the scoping rule (the order in which Python will look through different
+  namespaces when searching for a variable: local -> enclosing -> global ->
+  builtin)
 
 
 
