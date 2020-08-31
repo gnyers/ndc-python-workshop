@@ -281,8 +281,8 @@ Exercise 1: BankAccount
 
 Consider the BankAccount example above:
 
-- add a :func:`__str__()` method to make it possible to print BankAccount objects.
-- add a :func:`withdraw()` method to withdraw money from the
+- add a ``__str__()`` method to make it possible to print BankAccount objects.
+- add a ``withdraw()`` method to withdraw money from the
   BankAccount. Make sure we cannot withdraw more money than is
   actually in the account. Of course you can also not withdraw a
   negative amount of money.
@@ -293,7 +293,7 @@ Exercise 2: Cars
 
 See the Car example above. Create a list of Car instances. Print this list. What goes wrong?
 
-Add a :func:`repr()` method to fix this.
+Add a ``repr()`` method to fix this.
 
 
 Exercise 3: Pizza
@@ -319,9 +319,9 @@ Then, create a Pizza class. Here are the requirements:
 
 - A pizza is created with a name and a list of toppings (Margherita
   has Mozzarella and Tomato Sauce)
-- There should be a method :func:`Pizza.price()` that returns the price for
+- There should be a method ``Pizza.price()`` that returns the price for
   a pizza. The calculation for this is $2 + the sum of all topping
   prices.
-- Make it possible to call :func:`print()` on a Pizza object.
+- Make it possible to call ``print()`` on a Pizza object.
 
 Create several Pizza objects to test your code.
