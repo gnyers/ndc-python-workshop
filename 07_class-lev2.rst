@@ -188,7 +188,8 @@ We can make objects sortable by implementing the `<` operator. To do
 this, implement the `__lt__(self,other)` method. Make rectangles
 sorteable by their area.
 
-Test this by creating a list of rectangle objects and sorting it.
+Test this by creating a list of rectangle objects and sorting it. Also
+implement `__repl__`.
 
 Exercise 3: multiplying rectangles
 ------
