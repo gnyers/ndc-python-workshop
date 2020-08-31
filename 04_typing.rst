@@ -503,6 +503,7 @@ Exercise 2: Students
 Given the following dictionary with students and grades:
 
 .. code:: python
+
    {'John': [8, 2, 3, 6, 8],
     'Annie': [5, 8, 7, 8, 5],
     'Pete': [8, 8, 6, 7, 9],
@@ -527,6 +528,7 @@ Add type annotations to the functions `print_table` and
 `find_prod_by_name` so that you receive no errors from `mypy`.
 
 .. code:: python
+
    inventory = [ { 'name': 'bread', 'price': 2, 'stock': 100 },
     { 'name': 'coffee', 'price': 3, 'stock': 40 },
     { 'name': 'cheese', 'price': 3, 'stock': 30 },
@@ -553,8 +555,3 @@ Add type annotations to the functions `print_table` and
        print_table(inventory)
    else:
        print("Unknown product")
-
-
----------
-
-Now go and add type annotations to your code!
