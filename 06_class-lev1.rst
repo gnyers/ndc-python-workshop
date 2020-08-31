@@ -227,10 +227,10 @@ Some Extra Examples
 .. code:: python
 
    class Pet:
-    "A class representing pet animals"
-    def __init__(self, name, species):
-        self.name = name       # store the value for name on the name attribute
-        self.species = species
+       "A class representing pet animals"
+       def __init__(self, name, species):
+           self.name = name       # store the value for name on the name attribute
+           self.species = species
 
    # Creating objects (this calls __init__)
    c = Pet("Tom", "Cat")
