@@ -442,3 +442,8 @@ This can be confusing, especially when debugging your code. The
 solution is something called `functools.wraps`, which is explained
 `here
 <https://lerner.co.il/2019/05/05/making-your-python-decorators-even-better-with-functool-wraps/>`_.
+
+
+Solutions
+=========
+There are `solutions <solutions_closures_decorators.rst>`_. for all exercises.
