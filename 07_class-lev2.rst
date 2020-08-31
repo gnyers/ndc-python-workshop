@@ -2,10 +2,6 @@
 Classes, continued
 ===============
 
-================================================================================
-Type Checking
-================================================================================
-
 .. sectnum::
    :start: 1
    :suffix: .
@@ -179,8 +175,7 @@ For a list of magic methods, see: `this tutorial <https://www.python-course.eu/p
 Exercise 1: Rectangles
 -----
 
-Create a class ``Rectangle``. This has two properties: a height and a
- width. Both are arguments of ``__init()__``.
+Create a class ``Rectangle``. This has two properties: a height and a  width. Both are arguments of ``__init()__``.
 
 Add a method ``area()`` that returns the area of the rectangle, and a
 ``__str__`` method that makes it possible to print a rectangle object.
@@ -225,3 +220,62 @@ bankaccount, you add that amount to the balance.
 But if you add two BankAccount objects, you return a new BankAccount
 object with the names of the owners added together and the balances
 summed as well. The original accounts should be emptied.
+
+Exercises: Properties
+=====================
+
+Exercise 1: fullname
+---
+
+Consider the following:
+
+.. code:: python
+
+   class Person:
+       def __init__(self, firstname, lastname):
+           self.firstname = firstname
+           self.lastname = lastname
+
+Add a property `fullname` that consists of the first and the last name.
+
+Exercise 2: square
+---
+
+On your rectangle class, add a boolean property `is_square` that is
+true when width and height are the same.
+
+Usage:
+
+.. code:: python
+
+   r = Rectangle(10,5)
+   print(r.is_square) # False
+
+Exercise 2: password
+----
+
+On the BankAccount class, add a private field `__password`. Create a
+getter and a setter such that:
+
+- the password cannot be retrieved - trying to get the value should
+  return an empty string.
+
+- the password can be set, but you don't save the password itself.
+  Instead you store an encoded version of the string (use something
+  like `Hashlib <https://docs.python.org/3.8/library/hashlib.html>`_
+
+Add a method `checkpassword` that takes a string, encodes it as well,
+and compares it to the stored, encoded password. Return true if the
+password is correct.
+
+Note: nowhere in the class should you be storing the plaintext password!
+
+Usage should look something like:
+
+.. code:: python
+
+   acct = BankAccount(...)
+   acct.password = "p@ssw0rd"  # this should store an encoded string in __password
+   print(acct.password) # print ""
+   acct.checkpassword("hoi") # Return False
+   acct.checkpassword("p@ssw0rd") # Return True
