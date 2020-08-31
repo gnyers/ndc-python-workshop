@@ -254,7 +254,7 @@ Usage:
    print(r.is_square) # False
 
 Exercise 3: password
----
+-------------------
 
 On the BankAccount class, add a private field `__password`. Create a
 getter and a setter such that:
