@@ -335,7 +335,7 @@ Exercise 1: HTML
 Write two decorators `bold` and `italic` that take a string-generating
 function and add html tags. You should be able to use them like this:
 
-.. code::python
+.. code:: python
 
    @italic
    def say_in_bold_and_italic(text):
@@ -359,7 +359,7 @@ Write a decorator `auth` that makes a function require authorization.
 Any function decorated in this way, will ask for a password. If the
 password is not entered correctly, you refuse to execute the code.
 
-.. code::python
+.. code:: python
 
    @auth
    def get_private_data():
