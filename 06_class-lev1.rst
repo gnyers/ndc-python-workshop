@@ -273,10 +273,10 @@ Some Extra Examples
     account = BankAccount("RJ", 1000)
 
 
-1 Exercises: Warming up
+Exercises: Warming up
 =======================
 
-1.1 Exercise 1: BankAccount
+Exercise 1: BankAccount
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Consider the BankAccount example above:
@@ -288,7 +288,7 @@ Consider the BankAccount example above:
   actually in the account. Of course you can also not withdraw a
   negative amount of money.
 
-1.2 Exercise 2: Cars
+Exercise 2: Cars
 ~~~~~~~~~~~~~~~~~~~~
 
 See the Car example above. Create a list of Car instances. Print this
@@ -296,7 +296,7 @@ list. What goes wrong?
 
 Add a ``__repr()__`` method to fix this.
 
-1.3 Exercise 3: Pizza
+Exercise 3: Pizza
 ~~~~~~~~~~~~~~~~~~~~~
 
 Consider the following code:
