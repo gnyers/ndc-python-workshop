@@ -277,7 +277,7 @@ Exercises: Warming up
 =======================
 
 Exercise 1: BankAccount
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----
 
 Consider the BankAccount example above:
 
@@ -289,9 +289,41 @@ Consider the BankAccount example above:
   negative amount of money.
 
 Exercise 2: Cars
-~~~~~~~~~~~~~~~~~~~~
+-----
 
 See the Car example above. Create a list of Car instances. Print this
 list. What goes wrong?
 
 Add a ``__repr()__`` method to fix this.
+
+Exercise 3: Pizza
+-----
+
+Consider the following code:
+
+.. code:: python
+
+    class Topping:
+        def __init__(self, name, price):
+            self.name = name
+            self.price = price
+
+        def __str__(self):
+            return self.name
+
+
+Start by creating a number of Topping objects, let's say Mozzarella
+for $0.20, Tomato Sauce for $0.10, Prosciutto for $0.50.
+
+Then, create a Pizza class. Here are the requirements:
+
+- A pizza is created with a name and a list of toppings (Margherita
+  has Mozzarella and Tomato Sauce)
+
+- There should be a method ``Pizza.price()`` that returns the price for
+  a pizza. The calculation for this is $2 + the sum of all topping
+  prices.
+
+- Make it possible to call ``print()`` on a Pizza object.
+
+Create several Pizza objects to test your code.
