@@ -1,8 +1,21 @@
+===============
+Solutions: Classes, pt 2
+===============
+
+.. sectnum::
+   :start: 1
+   :suffix: .
+   :depth: 2
+
+.. contents:: Contents:
+   :depth: 2
+   :backlinks: entry
+   :local:
     :Author: Reindert-Jan
 
 .. contents::
 
-Exercises: Magic Methods
+Solutions: Magic Methods
 =======================
 
 For a list of magic methods, see: `this tutorial <https://www.python-course.eu/python3_magic_methods.php>`_
@@ -145,3 +158,72 @@ Exercise 4: BankAccount
     together += 200
     print(together)
     print(together - 2200)
+
+
+Solutions: Properties
+=====================
+
+Exercise 1: fullname
+---------------------
+
+.. code:: python
+
+   class Person:
+       def __init__(self, firstname, lastname):
+           self.firstname = firstname
+           self.lastname = lastname
+
+       @property
+       def fullname(self):
+           return f"{self.firstname} {self.lastname}"
+
+
+Exercise 2: square
+---------------------
+
+On your rectangle class, add a boolean property `is_square` that is
+true when width and height are the same.
+
+Usage:
+
+.. code:: python
+
+   class Rectangle:
+       ...
+
+       @property
+       def is_square(self):
+           return self.height == self.width
+
+Exercise 3: password
+-------------------
+
+.. code:: python
+
+   class BankAccount:
+    def __init__(self, name, initial_balance):
+        self.name = name
+        self.balance = initial_balance
+        self.__password = None
+
+    ...
+
+    @property
+    def password(self):
+        return ""
+
+    @password.setter
+    def password(self, new_pwd):
+        self.__password = new_pwd[::-1] # very sophisticated encryption scheme
+
+    def check_password(self, password):
+        if self.__password is None:
+            return False # No password set
+        else:
+            return password[::-1] == self.__password
+
+   account1 = BankAccount("RJ", 1000)
+   account1.password = "secret"
+   print(account1._BankAccount__password) # we are actually storing an "encrypted" password
+   print(account1.check_password("hi!"))
+   print(account1.check_password("secret"))
