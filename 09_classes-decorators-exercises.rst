@@ -91,6 +91,7 @@ Specifications:
 
 - To check the availability of an URL, you may use the following snippet: ::
 
+   >>> import urllib.request   
    >>> conn = urllib.request.urlopen('http://python.org')
    >>> type(conn)
    <class 'http.client.HTTPResponse'>
