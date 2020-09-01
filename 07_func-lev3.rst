@@ -215,6 +215,11 @@ Comprehension:
     to_f = [ float(s[1:]) for s in prices if s[0] == '$']
 
 
+A note about callables
+======================
+
+See `this article from trey hunner <https://treyhunner.com/2019/04/is-it-a-class-or-a-function-its-a-callable/>`_.
+
 Exercises: Comprehensions
 =======================
 
