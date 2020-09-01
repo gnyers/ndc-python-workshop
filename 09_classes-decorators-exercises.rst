@@ -30,12 +30,19 @@ Specifications:
    Google Search Engine;https://google.com
    Github;https://github.com
 
+- The ``.from_csv()`` method should accept the following arguments:
+
+  - ``fname``: name of the CSV file
+  - ``name``: name of the new ``Bookmarkstash`` instance, default value:
+    ``Imported Bookmarkstash``
+  - ``delim``: optional, default value ``;``
+
 - Implement the ``BookmarkStash.__str__()`` magic method such, that the
   its instances will look something similar: ::
 
    >>> bm = BookmarkStash(name='My Bookmarks')
-   >>> bm.add(name='Python Home', url='https://python.org')
-   >>> bm.add(name='GitHub', url='https://github.com')
+   >>> bm.add(Bookmark(name='Python Home', url='https://python.org'))
+   >>> bm.add(Bookmark(name='GitHub', url='https://github.com'))
    >>> print(bm)
    My Bookmarks (2)
 
@@ -50,11 +57,13 @@ Specifications:
    <class 'str'>
 
 
-Ex02: (✪) Create the ``BookmarkStash.validate_url`` static method
+Ex02: (✪) Create the ``Bookmark.validate_url`` static method
 ------------------------------------------------------------------
 
 Specifications:
 
+- Based on the ``Bookmark`` class of the previous segment's  "Ex03"
+- The method will take a single ``str`` argument: ``url``
 - The return value is always a boolean; ``True`` if the provided ``str`` looks
   like a valid URL; ``False`` if not
 
@@ -70,11 +79,28 @@ Specifications:
 
 **Hints**:
 
-- The required checks are simple enough that you can implement the checks
-  using the ``str.split()`` method and list splicing techniques
+- The required checks are challenging, but you can implement them using only
+  the ``.split()``, ``.find()``, ``.count()`` and other ``str`` methods and
+  list splicing techniques
 
 - If you prefer, you may use Python's ``re`` module, that implements Regular
-  Expressions
+  Expressions. You could use the following lines of code: ::
+
+   regex = r'(https?)://([a-zA-Z0-9.]+):?([0-9]*)(/?.*$)'
+   parts = re.match( regex, url)
+   prot, domain, portnr, pageurl = parts.groups()
+
+  Extra info on RegEx: it will split the URL into 4 parts ::
+
+     Example URL:    'https://python.org:3333/asdf/asdf'
+     Parts:           | 0  |  |    1   | | 2||   3     |
+                      `----'  `--------' `--'`---------'
+
+  Where:
+  - 0: protocol
+  - 1: domain
+  - 2: port nr (optional)
+  - 3: page URL
 
 
 Ex03: (✪✪✪) Create the ``BookmarkStash.valid_bookmarks`` property
@@ -83,8 +109,7 @@ Ex03: (✪✪✪) Create the ``BookmarkStash.valid_bookmarks`` property
 Specifications:
 
 - This is a read-only property
-- The property should return a ``list`` of ``Bookmark`` objects  (See Ex03 of
-  the previous segment) that are validated an on-line
+- The property should return a ``list`` of ``Bookmark`` objects that are validated an on-line
 
 
 **Hints**:

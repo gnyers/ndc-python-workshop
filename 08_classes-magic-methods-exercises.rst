@@ -14,10 +14,10 @@ Classes: Magic methods to make collection types - Exercises
 
 
 Exercises
-================================================================================
+================================================================================')
 
 Ex01: (✪) Create ``BookmarkStash`` class
--------------------------------------
+--------------------------------------------------------------------------------
 
 With the following specifications:
 
@@ -51,28 +51,35 @@ With the following specifications:
 
 
 Ex02: (✪✪) Extend the ``BookmarkStash``
----------------------------------------
+--------------------------------------------------------------------------------
 
 as follows:
 
-- the container should only hold unique URLs, so no duplicates
-- (Optional) when listing the content, the order of the listing should retain the order
-  in which the Bookmarks have been added to the ``BookmarkStash``
+- the container should only hold unique URLs, so no duplicates, raise
+  a ``ValueError`` exception if duplicate Bookmark is being added
 - implement a search feature using the element lookup operator, i.e.:
   ``stash['python']`` should return all Bookmarks, whose URL contains the
   word ``python``.
 
+**Hint**: check for duplicates with the ``in`` operator, e.g.: ::
+
+ >>> 'https://python.org' in bm.content
+
 
 Ex03: (✪✪✪) Implement the ``Bookmark`` class
--------------------------------------------
+--------------------------------------------------------------------------------
 
 With the following specifications:
 
 - It should store the following information: ``url``, the ``date`` when it was
   added and a list of ``keywords``
+- only allow ``Bookmark`` instances to be added to the ``BookmarkStash``
+  instance
 - Make sure that the ``BookmarkStash`` class provides for a search method to
   find all ``Bookmark`` objects that are related to a keyword
-- (Optional): make sure that the ``Bookmark`` instances will have a nice object representation (i.e.: ``repr(obj)``), e.g.: Bookmark("https://python.org")
+- (Optional): make sure that the ``Bookmark`` instances will have a nice
+  object representation (i.e.: ``repr(obj)``), e.g.:
+  ``Bookmark("https://python.org")``
 
 Example usage: ::
 
