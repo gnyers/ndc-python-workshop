@@ -264,3 +264,7 @@ Given the following:
 
 
 Determine the total number of legs for `individuals` by using comprehensions.
+
+Solutions
+=========
+There are `solutions <solutions_typing.rst>`_. for all exercises.
