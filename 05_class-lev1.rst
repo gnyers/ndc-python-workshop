@@ -327,3 +327,7 @@ Then, create a Pizza class. Here are the requirements:
 - Make it possible to call ``print()`` on a Pizza object.
 
 Create several Pizza objects to test your code.
+
+Solutions
+=========
+There are `solutions <solutions_classes_1.rst>`_. for all exercises.
