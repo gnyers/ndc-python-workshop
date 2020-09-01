@@ -555,3 +555,7 @@ Add type annotations to the functions `print_table` and
        print_table(inventory)
    else:
        print("Unknown product")
+
+Solutions
+=========
+There are `solutions <solutions_.rst>`_. for all exercises.
