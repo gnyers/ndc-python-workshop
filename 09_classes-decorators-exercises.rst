@@ -17,8 +17,6 @@ Classes: class- and static methods, properties - Exercises
 Exercises
 ================================================================================
 
-See also: the `solutions <09_classes-decorators-exercises-solutions.py>`_
-
 
 Ex01: (✪✪) Create the ``BookmarkStash.from_csv`` class method
 ------------------------------------------------------------
@@ -134,6 +132,12 @@ Specifications:
 
 
 
+Solutions
+================================================================================
+
+
+See also the solutions: the `09_classes-decorators-exercises-solutions.py <09_classes-decorators-exercises-solutions.py>`_
+
+
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
 .. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3
-
