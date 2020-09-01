@@ -72,7 +72,18 @@ With the following specifications:
   added and a list of ``keywords``
 - Make sure that the ``BookmarkStash`` class provides for a search method to
   find all ``Bookmark`` objects that are related to a keyword
+- (Optional): make sure that the ``Bookmark`` instances will have a nice object representation (i.e.: ``repr(obj)``), e.g.: Bookmark("https://python.org")
 
+Example usage: ::
+
+ >>> bm[0]
+ Bookmark("https://python.org")
+
+ >>> bm[:2]
+ [Bookmark("https://python.org"), Bookmark("https://w3.org")]
+
+ >>>bm['python']
+ [Bookmark("https://python.org")]
 
 
 
