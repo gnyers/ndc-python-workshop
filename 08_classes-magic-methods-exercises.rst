@@ -56,7 +56,7 @@ Ex02: (✪✪) Extend the ``BookmarkStash``
 as follows:
 
 - the container should only hold unique URLs, so no duplicates
-- when listing the content, the order of the listing should retain the order
+- (Optional) when listing the content, the order of the listing should retain the order
   in which the Bookmarks have been added to the ``BookmarkStash``
 - implement a search feature using the element lookup operator, i.e.:
   ``stash['python']`` should return all Bookmarks, whose URL contains the
