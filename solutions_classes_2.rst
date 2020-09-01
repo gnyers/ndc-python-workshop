@@ -79,3 +79,69 @@ Exercise 3: multiplying rectangles
         return f"{self.width}x{self.height} = {self.area()}"
 
     print(Rectangle(1,1)*5)
+
+
+Exercise 4: BankAccount
+----------------------
+
+.. code:: python
+
+   class BankAccount:
+    def __init__(self, name, initial_balance):
+        self.name = name
+        self.balance = initial_balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            return self.balance
+        else:
+            print("Can't deposit a negative amount!")
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if self.balance >= amount:
+                self.balance -= amount
+                return self.balance
+            else:
+                print("Not enough money :(")
+        else:
+            print("Can't withdraw a negative amount!")
+
+    # Note: we only need one comparison operator for < and >
+    def __lt__(self, other):
+        return self.balance < other.balance
+
+    def __eq__(self, other):
+        return self.balance == other.balance
+
+    def __add__(self, other):
+        if isinstance(other, int):
+            self.deposit(other)
+            return self
+        else:
+            nw_acct = BankAccount(f"{self.name} & {other.name}", self.balance + other.balance)
+            self.balance = 0
+            other.balance = 0
+            return nw_acct
+
+    def __sub__(self, other):
+        self.withdraw(other)
+        return self
+
+
+    def __str__(self):
+        return f"account: {self.name}: {self.balance}"
+
+    account1 = BankAccount("RJ", 1000)
+    account2 = BankAccount("Scrooge McDuck", 10000000)
+    print(account1 < account2)
+    print(account1 > account2)
+    print(account1 == account2)
+
+    account3 = BankAccount("Irina", 1000)
+    together = account1 + account3
+    print(together)
+    together += 200
+    print(together)
+    print(together - 2200)
