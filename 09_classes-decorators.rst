@@ -437,7 +437,7 @@ Summary
 Exercises
 =========
 
-See `09_classes-decorators.rst <09_classes-decorators.rst>`_
+See `09_classes-decorators-exercises.rst <09_classes-decorators-exercises.rst>`_
 
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
