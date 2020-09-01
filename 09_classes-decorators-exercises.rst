@@ -17,6 +17,9 @@ Classes: class- and static methods, properties - Exercises
 Exercises
 ================================================================================
 
+See also: the `solutions <09_classes-decorators-exercises-solutions.py>`_
+
+
 Ex01: (✪✪) Create the ``BookmarkStash.from_csv`` class method
 ------------------------------------------------------------
 
