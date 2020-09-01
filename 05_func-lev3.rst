@@ -18,6 +18,9 @@ Functional Programming
 
 Presentation: `Functional Programming <https://codesensei.nl/presentations/functional.html>`_
 
+What is functional programming?
+-------------------------------
+
 ::
 
     Functional programming is a programming paradigm where programs are
@@ -210,6 +213,7 @@ Comprehension:
 .. code:: python
 
     to_f = [ float(s[1:]) for s in prices if s[0] == '$']
+
 
 Exercises: Warming up
 =======================
