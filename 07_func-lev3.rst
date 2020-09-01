@@ -215,7 +215,7 @@ Comprehension:
     to_f = [ float(s[1:]) for s in prices if s[0] == '$']
 
 
-Exercises: Warming up
+Exercises: Comprehensions
 =======================
 
 Exercise 1: numbers
