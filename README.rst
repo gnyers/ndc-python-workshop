@@ -25,24 +25,25 @@ Agenda
 Monday
 ------
 
-   1. Functions - Recap     (Gábor)
-   2. Iterator Protocol     (Gábor)
+   1. `Functions - Recap <01_func-introduction.rst>`_     (Gábor)
+   2. `Iterator Protocol <02_iterator-protocol.rst>`_     (Gábor)
 
    Lunch
 
-   3. Closures & Decorators (Reindert)
-   4. Type checking         (Reindert)
+   3. `Closures & Decorators <03_func-lev2.rst>`_ (Reindert)
+   4. `Type checking <04_typing.rst>`_            (Reindert)
 
 Tuesday
 -------
 
-   5. Functional Programming       (Reindert)
-   6. Magic Methods - Introduction (Reindert)
+   5. `Classes - Introduction <05_class-lev1.rst>`_ (Reindert)
+   6. `Classes - Magic Methods <06_class-lev2.rst>`_ (Reindert)
+   7. `Functional Programming <07_func-lev3.rst>`_       (Reindert)
 
    Lunch
 
-   7. Collection protocols and implementing collections (Gábor)
-   8. Properties, class methods, and static methods     (Gábor)
+   8. `Classes - Collection protocols and implementing collections <08_classes-magic-methods.rst>`_ (Gábor)
+   9. `Classes - Class- and static methods and Properties <09_classes-decorators.rst>`_     (Gábor)
 
 Conferencing facility
 ================================================================================

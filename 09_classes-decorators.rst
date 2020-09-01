@@ -434,6 +434,11 @@ Summary
   ``@property`` decorator allows for something similar.
 
 
+Exercises
+=========
+
+See `09_classes-decorators.rst <09_classes-decorators.rst>`_
+
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
 .. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3

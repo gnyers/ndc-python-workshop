@@ -287,7 +287,15 @@ Demo:
    ['Homer']
 
 
+Exercises
+=========
 
+- Ex01: (✪) Create ``BookmarkStash`` class
+- Ex02: (✪✪) Extend the ``BookmarkStash``
+- Ex03: (✪✪✪) Implement the ``Bookmark`` class
+
+See: `08_classes-magic-methods-exercises.rst
+<08_classes-magic-methods-exercises.rst>`_
 
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
