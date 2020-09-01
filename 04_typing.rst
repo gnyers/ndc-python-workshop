@@ -558,4 +558,4 @@ Add type annotations to the functions `print_table` and
 
 Solutions
 =========
-There are `solutions <solutions_.rst>`_. for all exercises.
+There are `solutions <solutions_typing.rst>`_. for all exercises.
