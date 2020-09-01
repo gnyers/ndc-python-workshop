@@ -45,12 +45,7 @@ Tuesday
    8. `Classes - Collection protocols and implementing collections <08_classes-magic-methods.rst>`_ (Gábor)
    9. `Classes - Class- and static methods and Properties <09_classes-decorators.rst>`_     (Gábor)
 
-Conferencing facility
-================================================================================
 
-* link: https://meet.trebut.nl/b/gab-bro-fw5
-
-* `How to connect <bbb-connect.rst>`_
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
 .. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3
