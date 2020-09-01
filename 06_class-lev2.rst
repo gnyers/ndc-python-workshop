@@ -281,3 +281,7 @@ Usage should look something like:
    print(acct.password) # print ""
    acct.checkpassword("hoi") # Return False
    acct.checkpassword("p@ssw0rd") # Return True
+
+Solutions
+=========
+There are `solutions <solutions_classes_2.rst>`_. for most exercises.
