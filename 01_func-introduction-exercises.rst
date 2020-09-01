@@ -195,5 +195,12 @@ Create the ``analyze()`` function, which will:
 (*) try: ``import this``
 
 
+
+Solutions
+================================================================================
+
+See also the solutions: `01_func-introduction-exercises-solutions.py <01_func-introduction-exercises-solutions.py>`_
+
+
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
 .. vim: linebreak ruler spell spelllang=en showbreak=… shiftwidth=3 tabstop=3
