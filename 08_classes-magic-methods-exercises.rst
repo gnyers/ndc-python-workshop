@@ -16,8 +16,6 @@ Classes: Magic methods to make collection types - Exercises
 Exercises
 ================================================================================
 
-See also the solutions: `08_classes-magic-methods-exercises-solutions.py <08_classes-magic-methods-exercises-solutions.py>`_
-
 Ex01: (✪) Create ``BookmarkStash`` class
 --------------------------------------------------------------------------------
 
@@ -94,6 +92,10 @@ Example usage: ::
  >>>bm['python']
  [Bookmark("https://python.org")]
 
+Solutions
+================================================================================
+
+See also the solutions: `08_classes-magic-methods-exercises-solutions.py <08_classes-magic-methods-exercises-solutions.py>`_
 
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
