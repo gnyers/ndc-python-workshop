@@ -1,5 +1,5 @@
 ================================================================================
-Classes: Magic methods to make collection types - Exercises
+Classes: Magic methods to make collection types
 ================================================================================
 
 
@@ -13,384 +13,281 @@ Classes: Magic methods to make collection types - Exercises
    :backlinks: entry
    :local:
 
+.. Fancy RST roles, needs rst2html-fancy.css
 
-Exercises
-===============================================================================
+.. role:: tst
+   :class: test
+.. role:: file(code)
+.. role:: dir(code)
+.. role:: key(code)
+.. role:: cmd(code)
+.. role:: url(code)
 
-Sorting with a specific sorting function
+.. role:: var(code)
+.. role:: type(code)
+.. role:: func(code)
+.. role:: class(code)
+.. role:: mod(code)
+
+.. role:: git(code)
+.. role:: commit(code)
+.. role:: tag(code)
+.. role:: bug(code)
+
+.. role:: app(code)
+.. role:: user(code)
+.. role:: dottedline(code)
+.. role:: verticalspace(code)
+
+
+.. Abbreviations
+.. =============
+
+.. |ANSWER| replace:: **Answer/Solution:**
+
+.. |GIT| replace:: :app:`Git`
+.. |PYTHON| replace:: :app:`Python`
+
+
+.. |DOTTEDLINE| replace:: :dottedline:`✎`
+
+
+Relevant Magic methods
+================================================================================
+
+- Python's Language Specifications define a few dozens  "magic methods", which
+  can be used by programmers to integrate their classes into the language.
+
+- The level of integration is quite complete: class authors have the ability
+  to seamlessly embed their types into Python. It is even possible to replace
+  the type "primitives", such as ``list``, ``dicts`` etc...
+
+In this segment we'll be focusing on implementing the necessary methods to
+have a custom class act as a regular collection type:
+
+- ``__iter__()``: integration with ``:func:iter()``
+- ``__len__()``: integration with ``:func:len()``
+- ``__getitem__``: implements the element lookup notation, e.g.: ``obj[0]``
+
+
+``__iter__()``
 --------------------------------------------------------------------------------
 
-**Challenge**
-   Sort a list with the days of the week (list of strings) in the correct
-   order. ::
+The role of the ``__iter__()`` method:
 
-    >>> days = 'Mon Sun Tue Fri Sat Sun Mon Tue Mon Wed Sat Thu Fri'.split()
-    >>> days
-    ['Mon', 'Sun', 'Tue', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Mon', 'Wed', 'Sat', 'Thu', 'Fri']
+- Whenever a ``for`` loop, or any of the "Iterator protocol" based tools want
+  to process the elements of a collection type, Python will implicitly run
+  ``iter(obj)``
 
-**Problem**
-   By default :func:`sorted()` function will sort strings in alphabetical
-   order (lexicographical order). ::
+- The ``:func:iter()`` function will check for the availability of the
+  ``obj.__iter__`` property. If found and it is ``callable``,  the
+  ``obj.__iter__()`` method is invoked.
 
-    >>> sorted(days)
-    ['Fri', 'Fri', 'Mon', 'Mon', 'Mon', 'Sat', 'Sat', 'Sun', 'Sun', 'Thu', 'Tue', 'Tue', 'Wed']
+- The expected return value is an ``Iterator`` object, which is able to
+  iterate through the elements of ``obj``.
 
-**Solution**
-   Use a sort function which will define the order of the elements: ::
+- See also the `Python Language Reference for __iter__()
+  <https://docs.python.org/3/reference/datamodel.html#object.__iter__>`_
 
-    >>> def day_sorter(day):
-    ...     # the desired order of the elements
-    ...     order = 'Mon Tue Wed Thu Fri Sat Sun'.split()
-    ...     # return the position of the current element in the `order` list
-    ...     return order.index(day)
-    ...
-    >>> sorted(days, key=day_sorter)
-    ['Mon', 'Mon', 'Mon', 'Tue', 'Tue', 'Wed', 'Thu', 'Fri', 'Fri', 'Sat', 'Sat', 'Sun', 'Sun']
+A minimalistic example for an iterable class:
 
-**Bonus**
-   The same sorting function will also work with :func:`min()` and :func:`max()` ::
+.. code:: python
+   :class: python-code
 
-    >>> min(days)
-    Fri                                # No!
-    >>> min(days, key=day_sorter)
-    Mon                                # Yes!
+   class Addressbook:
+      def __init__(self, name):
+         self.name = name
+         self.content = []
+
+      def __iter__(self):
+         return iter(self.content)
+
+Another piece of code using the class:
+
+.. code:: python
+   :class: python-code
+
+   ab = Addressbook('Personal')
+   ab.content.append('Homer')
+   ab.content.append('Marge')
+   ab.content.append('Bart')
+   ab.content.append('Lisa')
+   ab.content.append('Maggie')
+
+And finally how to read its content:
+
+.. code:: python
+   :class: pycon
+
+   for person in ab:
+      print(person)
+
+   Homer
+   Marge
+   Bart
+   Lisa
+   Maggie
 
 
-Counting
+
+Since ``ab`` is now an iterable, functions such as ``sorted()``, ``filter()``,
+``map()``, ``min()``, ``max()`` etc... would work as expected.
+
+
+.. code:: python
+   :class: pycon
+
+   >>> sorted(ab)
+   ['Bart', 'Homer', 'Lisa', 'Maggie', 'Marge']
+   >>> list(map(lambda s: s.upper(), ab))
+   ['HOMER', 'MARGE', 'BART', 'LISA', 'MAGGIE']
+
+   >>> min(ab)
+   'Bart'
+
+   >>> max(ab)
+   'Marge'
+
+
+
+``__len__()``
 --------------------------------------------------------------------------------
 
-.. _dict_persons:
+The role of the ``__iter__()`` method:
 
-**Challenge**
-   How many males and females are in the following :type:`dict`? ::
+- Whenever ``:func:len(obj)`` is invoked, Python will look for the
+  ``obj.__len__`` property. If found and it is ``callable``,  the
+  ``obj.__len__()`` method is invoked.
 
-    persons = [
-        {'name': 'Lucy',     'age': 14, 'gender': 'f'},
-        {'name': 'Andrej',   'age': 34, 'gender': 'm'},
-        {'name': 'Mark',     'age': 17, 'gender': 'm'},
-        {'name': 'Thomas',   'age': 44, 'gender': 'm'},
-        {'name': 'Evi',      'age': 25, 'gender': 'f'},
-        {'name': 'Robert',   'age': 23, 'gender': 'm'},
-        {'name': 'Dragomir', 'age': 54, 'gender': 'm'},
-        {'name': 'Jenny',    'age': 34, 'gender': 'f'},
-        {'name': 'Eline',    'age': 29, 'gender': 'f'},
-    ]
+- The expected return value is a positive integer, meaning the number of
+  elements in this collection object.
 
-**Solution**
-   Count the number of values of the :code:`gender` attribute using the
-   :type:`collections.Counter` class. **But**: :type:`Counter` needs the
-   to be counted values in a sequence-like *Iterable*, e.g.: ::
+- See also: `Python Language Reference for __len__()
+  <https://docs.python.org/3/reference/datamodel.html#object.__len__>`_
 
-    >>> from collections import Counter
-    >>> Counter('abracadabra')
-    Counter({'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1})
+Let's implement the ``__len__()`` method for the ``Addressbook`` class:
 
-   .. _gender_data_iterator:
+.. code:: python
+   :class: python-code
 
-   **However** the data is in a :type:`dict`! So let's extract the required
-   data with a small :code:`lambda` function: ::
+   class Addressbook:
+      def __init__(self, name):
+         self.name = name
+         self.content = []
 
-    >>> gender_data_iterator = map(lambda v: v['gender'], persons)
-    >>> Counter(gender_data_iterator)
-    Counter({'m': 5, 'f': 4})
+      def __iter__(self):
+         return iter(self.content)
 
-**Bonus**
-   What if the data is not clean? ::
-
-    persons2 = [
-        {'name': 'Lucy',     'age': 14, 'gender': 'f'},
-        {'name': 'Andrej',   'age': 34, 'gender': 'm'},
-        {'name': 'Mark',     'age': 17, 'gender': 'M'},
-        {'name': 'Thomas',   'age': 44, 'gender': 'M'},
-        {'name': 'Evi',      'age': 25, 'gender': 'f'},
-        {'name': 'Robert',   'age': 23, 'gender': 'M'},
-        {'name': 'Dragomir', 'age': 54, 'gender': 'M'},
-        {'name': 'Jenny',    'age': 34, 'gender': 'F'},
-        {'name': 'Eline',    'age': 29, 'gender': 'F'},
-    ]
-
-   In this case the previous solution clearly would give the wrong answer: ::
-
-    >>> Counter( map(lambda v: v['gender'], persons2) )
-    Counter({'M': 4, 'F': 2, 'f': 1, 'm': 1, 'v': 1})
-
-   So, let's lower-case the values before counting: 
-   :code:`lambda v: v['gender'].lower()`: ::
-
-    >>> gender_data_iterator2 = map(lambda v: v['gender'].lower(), persons2)
-    >>> Counter(gender_data_iterator2)
-    Counter({'m': 5, 'f': 4})
-
-   To see how this works, let's examine just the :code:`lambda` function.
-
-   The raw data record: ::
-    >>> persons2[3]
-    {'name': 'Thomas', 'age': 44, 'gender': 'M'}
-
-   When we apply the :code:`lambda` function to the raw data: ::
-
-    >>> f = lambda v: v['gender'].lower()
-    >>> f(persons2[3])
-    'm'
+      def __len__(self):
+         return len(self.content)
 
 
-Categorizing
+Following the previous example, this is how this new feature could be
+exercised:
+
+.. code:: python
+   :class: pycon
+
+   >>> len(ab)
+   5
+
+
+``__getitem__()``
 --------------------------------------------------------------------------------
 
-**Problem**
-   Given the :var:`persons` `(see) <dict_persons_>`_ :type:`dict` of the
-   previous example, sort the persons into age groups of decades, that is:
-   0-9, 10-19, 20-29, 30-39 etc...
+The role of the ``__getitem__()`` method:
 
-**Analysis**
-   Let's define the desired output of our program as a :type:`dict`, where:
+- Whenever the element lookup operator ``obj[ ... ]`` is invoked, Python will
+  check the availability of the ``obj.__getitem__`` property. If found and it
+  is ``callable``,  the ``obj.__getitem__(what)`` method is invoked.
 
-   - the keys: are the age buckets, expressed by a :type:`range` object, e.g.:
-     :code:`range(10)`. This corresponds with the ages of 0-9.
-   - values: are :type:`list`, which contain the persons, who fall in the age
-     bucket, e.g.: ::
+- The ``what`` object depends on the type of collection:
 
-      {
-       range(10, 20): [{'name': 'Lucy', 'age': 14, 'gender': 'f'},
-                       {'name': 'Mark', 'age': 17, 'gender': 'm'}],
-       range(20, 30): [{'name': 'Evi', 'age': 25, 'gender': 'f'},
-                       {'name': 'Robert', 'age': 23, 'gender': 'm'},
-                       {'name': 'Eline', 'age': 29, 'gender': 'f'}],
-       range(30, 40): [{'name': 'Andrej', 'age': 34, 'gender': 'm'},
-                       {'name': 'Jenny', 'age': 34, 'gender': 'f'}]
-      }
+  - a **key**, in case ``obj`` is of a ``dict``-like mapping class, or
+  - an **index** or **slice** object, if ``obj`` has a ``list``-like internal
+    data structure
 
-**Solution**
-   We'll need a :type:`list` (or :type:`tuple`), which contains the different
-   :type:`range` objects, against which the program will examine a person
-   :type:`dict`, e.g.: ::
+- See also: `Python Language Reference for __getitem__()
+  <https://docs.python.org/3/reference/datamodel.html#object.__getitem__>`_
 
-    categories = (range(9), range(10,20), range(20, 30), range(30, 40))
-
-   Also needed is an empty :type:`dict`, which will store the result: ::
 
-    res = {}
-
-   Finally, a nested loop will walk through the :code:`persons` :type:`dict`
-   and match the age of the current :code:`person` against each :type:`range`
-   object: ::
-
-    for r in categories:
-        for p in persons:
-            if p['age'] in r:
-                res.setdefault(r, []).append(p)
-
-   The line code:`res.setdefault(r, []).append(p)` is perhaps the most
-   intriguing here. Let's break this down:
-
-   - :code:`.setdefault()` method will return one of the following values:
-
-     - the value of the key :code:`r` (i.e.: a :type:`list`), if :code:`r` is
-       an existing key in :code:`res`, OR
-     - add the key :code:`r` with an empty :type:`list` as value to
-       :code:`res` AND return this empty :type:`list` object, if :code:`r` was
-       not yet a key
-
-   - in either of the above cases, the expression 
-     :code:`res.setdefault(r, [])` will return a :type:`list`, to which we
-     append the current person :type:`dict` as a new element.
-
-**Bonus**
-   This algorithm will accept any arbitrary age buckets, even if they overlap.
-   Observe the extended :code:`categories`, where we added the age groups
-   representing: elementary school children, high-school children, adults and
-   retirees: ::
+Implement ``__getitem__()`` for the ``Addressbook`` class:
 
-    categories = (range(9), range(10,20), range(20, 30), range(30, 40),
-                  range(6, 15), range(15, 19), range(19, 67), range(67, 120))
-
-    def categorize(persons, categories):
-        res = {}
-
-        for r in categories:
-            for p in persons:
-                if p['age'] in r:
-                    res.setdefault(r, []).append(p)
-        return res
 
-    print(categorize(persons, categories))
+.. code:: python
+   :class: python-code
 
-   The result is: ::
+   class Addressbook:
+      def __init__(self, name):
+         self.name = name
+         self.content = []
 
-    {range(10, 20): [{'name': 'Lucy', 'age': 14, 'gender': 'f'},
-                     {'name': 'Mark', 'age': 17, 'gender': 'm'}],
+      def __iter__(self):
+         return iter(self.content)
 
-     range(20, 30): [{'name': 'Evi', 'age': 25, 'gender': 'f'},
-                     {'name': 'Robert', 'age': 23, 'gender': 'm'},
-                     {'name': 'Eline', 'age': 29, 'gender': 'f'}],
+      def __len__(self):
+         return len(self.content)
 
-     range(30, 40): [{'name': 'Andrej', 'age': 34, 'gender': 'm'},
-                     {'name': 'Jenny', 'age': 34, 'gender': 'f'}],
+      def __getitem__(self, what):
+         return self.content.__getitem__(what)
 
-     range( 6, 15): [{'name': 'Lucy', 'age': 14, 'gender': 'f'}],
+Demo:
 
-     range(15, 19): [{'name': 'Mark', 'age': 17, 'gender': 'm'}],
+.. code:: python
+   :class: pycon
 
-     range(19, 67): [{'name': 'Andrej', 'age': 34, 'gender': 'm'},
-                     {'name': 'Thomas', 'age': 44, 'gender': 'm'},
-                     {'name': 'Evi', 'age': 25, 'gender': 'f'},
-                     {'name': 'Robert', 'age': 23, 'gender': 'm'},
-                     {'name': 'Dragomir', 'age': 54, 'gender': 'm'},
-                     {'name': 'Jenny', 'age': 34, 'gender': 'f'},
-                     {'name': 'Eline', 'age': 29, 'gender': 'f'}]
-    }
+   >>> ab[3]
+   'Lisa'
+   >>> ab[2]
+   'Bart'
+   >>> ab[0:3]
+   ['Homer', 'Marge', 'Bart']
+   >>> ab[::-1]
+   ['Maggie', 'Lisa', 'Bart', 'Marge', 'Homer']
 
-Iterable Classes
---------------------------------------------------------------------------------
 
-**Problem**
-   Create the :type:`Addressbook` class, which is a collection of
-   :type:`Person` instances. Make sure that the :type:`Addressbook` instances
-   are *Iterable*.
+A bit more advanced use-case, just because we can:
 
-**Solution**
-   Let's use the recently introduced :mod:`dataclasses` module to create the
-   classes. ::
+.. code:: python
+   :class: pycon
 
-    from dataclasses import dataclass, field
-    from typing import List
+   class Addressbook:
+      def __init__(self, name):
+         self.name = name
+         self.content = []
 
+      def __iter__(self):
+         return iter(self.content)
 
-    @dataclass
-    class Person:
-        fname: str = ''
-        sname: str = ''
-        gender: str = ''
-        email: str = ''
+      def __len__(self):
+         return len(self.content)
 
-    @dataclass
-    class Addressbook:
-        name: str = 'My Addressbook'
-        _items: List[Person] = field(default_factory=list, init=False)
+      def __getitem__(self, what):
+         if isinstance(what, (int, slice)):
+             return self.content.__getitem__(what)
+         elif isinstance(what, str):
+             return [ e for e in ab if e.find(what) != -1  ]
 
-   At this point the :type:`Addressbook` instances can hold items, but it is
-   not yet an *Iterable*: ::
+In addition to everything the previous version did, this one add:
 
-    >>> ab = Addressbook()
-    >>> ab
-    Addressbook(name='My Addressbook', _items=[])
-    >>> ab2._items += [ 'Jenny', 'Robert', 'Alice' ]
-    >>> ab2
-    Addressbook(name='My Addressbook', _items=['Jenny', 'Robert', 'Alice'])
+- The argument ``what`` now may be a ``str``
+- In this case return all the elements that begin with ``what``
 
-   However it is not yet an *Iterable*: ::
 
-    >>> list(ab2)
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    TypeError: 'Addressbook' object is not iterable
+Demo:
 
-   In |Python| a class is only *Iterable* if it implements the
-   :func:`.__iter__()` method, which provides an *Iterator* instance. So let's
-   do it: ::
+.. code:: python
+   :class: pycon
 
-    @dataclass
-    class Addressbook:
-        name: str = 'My Addressbook'
-        _items: List[Person] = field(default_factory=list, init=False)
+   >>> ab['M']
+   ['Marge', 'Maggie']
+   >>> ab['L']
+   ['Lisa']
+   >>> ab['H']
+   ['Homer']
 
-        def __iter__(self):
-            return iter(self._items)
 
-   It is now working: ::
 
-    >>> ab2 = Addressbook()
-    >>> ab2._items += [ 'Jenny', 'Robert', 'Alice' ]
-    >>> ab2
-    Addressbook(name='My Addressbook', _items=['Jenny', 'Robert', 'Alice'])
-
-    >>> list(ab2)                      # convert Addressbook -> list
-    ['Jenny', 'Robert', 'Alice']
-
-   While at it why don't we add a couple of other nice features, such as:
-
-   - implement the :func:`.add()` method, which will add an item to the
-     address book
-   - implement the :func:`.__len__()` method, so that the :func:`len()`
-     function is able to show the number of elements in the collection.
-
-   ::
-
-    @dataclass
-    class Addressbook:
-        name: str = 'My Addressbook'
-        _items: List[Person] = field(default_factory=list, init=False)
-
-        def __iter__(self):
-            return iter(self._items)
-
-        def add(self, person):
-            self._items.append(person)
-
-        def __len__(self):
-            return len(self._items)
-
-   Try out the result: ::
-
-    >>> fred = Person(fname='Fred', sname='Flintstone', gender='m',
-                  email='fred@bedrock.place')
-    >>> wilma = Person(fname='Wilma', sname='Flintstone', gender='f',
-                   email='wilma@bedrock.place')
-
-    >>> ab = Addressbook(name='The Flintstones')
-    >>> ab.add(fred)
-    >>> ab.add(wilma)
-
-    >>> print(f'Number of entries in addressbook: {len(ab)}')
-    2
-
-**Bonus**
-   By implementing the :func:`.__getitem__()` magic method on the :type:`Person`
-   class, we even can use the `previous solution <gender_data_iterator_>`_ to
-   count: ::
-
-    @dataclass
-    class Person:
-        fname: str = ''
-        sname: str = ''
-        gender: str = ''
-        email: str = ''
-
-        def __getitem__(self, item):
-           res = getattr(self, item)
-           return res
-
-    @dataclass
-    class Addressbook:
-        name: str = 'My Addressbook'
-        _items: List[Person] = field(default_factory=list, init=False)
-
-        def __iter__(self):
-            return iter(self._items)
-
-        def add(self, person):
-            self._items.append(person)
-
-        def __len__(self):
-            return len(self._items)
-
-    fred = Person(fname='Fred', sname='Flintstone', gender='m',
-              email='fred@bedrock.place')
-
-    wilma = Person(fname='Wilma', sname='Flintstone', gender='f',
-               email='wilma@bedrock.place')
-
-    ab = Addressbook(name='The Flintstones')
-    ab.add(fred)
-    ab.add(wilma)
-
-   Finally let's try how our new classes fit in our data-processing toolkit so
-   far : ::
-
-    gender_data_iterator = map(lambda v: v['gender'], ab)
-
-    >>> Counter(gender_data_iterator)
-    Counter({'m': 1, 'f': 1})
 
 
 .. vim: filetype=rst textwidth=78 foldmethod=syntax foldcolumn=3 wrap
